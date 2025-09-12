@@ -1,5 +1,5 @@
 package com.dante.holamundo;
-
+import com.dante.holamundo.Config;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod("holamundo")

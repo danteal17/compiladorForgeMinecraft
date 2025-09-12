@@ -18,14 +18,28 @@ repositories {
     maven { url = 'https://maven.terraformersmc.com/releases/' }
 }
 
-
-
 dependencies {
+    // Forge principal
     minecraft 'net.minecraftforge:forge:1.21.8-58.1.0'
+
+    // Para que las clases de Forge estén disponibles con nombres legibles
+    implementation fg.deobf('net.minecraftforge:forge:1.21.8-58.1.0')
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.release = 21
 }
 
 minecraft {
     mappings channel: 'official', version: '1.21.8'
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -40,4 +54,11 @@ minecraft {
             }
         }
     }
+}
+
+// Opcional: tareas útiles
+tasks.register('prepare') {
+    dependsOn 'setupDecompWorkspace'
+    dependsOn 'genEclipseRuns'
+    dependsOn 'genIntellijRuns'
 }
