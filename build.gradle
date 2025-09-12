@@ -19,16 +19,13 @@ repositories {
 }
 
 dependencies {
-    // Forge principal
     minecraft 'net.minecraftforge:forge:1.21.8-58.1.0'
-
-    // Para que las clases de Forge estén disponibles con nombres legibles
     implementation fg.deobf('net.minecraftforge:forge:1.21.8-58.1.0')
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(21) // Forge 1.21.8 requiere Java 21
     }
 }
 
@@ -39,7 +36,6 @@ tasks.withType(JavaCompile) {
 
 minecraft {
     mappings channel: 'official', version: '1.21.8'
-
     runs {
         client {
             workingDirectory project.file('run')
@@ -54,11 +50,4 @@ minecraft {
             }
         }
     }
-}
-
-// Opcional: tareas útiles
-tasks.register('prepare') {
-    dependsOn 'setupDecompWorkspace'
-    dependsOn 'genEclipseRuns'
-    dependsOn 'genIntellijRuns'
 }
