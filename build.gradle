@@ -1,16 +1,27 @@
 plugins {
-    id 'net.minecraftforge.gradle' version '6.0.+'
     id 'java'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '6.0.36'
 }
 
-group = 'com.tuusuario'
+group = 'com.dante'
 version = '1.0.0'
 archivesBaseName = 'holamundo'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.minecraftforge.net/' }
+    maven { url = 'https://libraries.minecraft.net/' }
+    maven { url = 'https://repo.spongepowered.org/maven' }
+    maven { url = 'https://maven.terraformersmc.com/releases/' }
+}
+
+
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.21.8-58.1.0'
 }
 
 minecraft {
@@ -18,10 +29,15 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+            mods {
+                holamundo {}
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            mods {
+                holamundo {}
+            }
         }
     }
-}
-
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.21.8-47.1.0'
 }

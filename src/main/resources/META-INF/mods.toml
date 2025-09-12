@@ -1,9 +1,16 @@
 modLoader="javafml"
-loaderVersion="[47,)"
+loaderVersion="[58,)"
 license="MIT"
 
 [[mods]]
 modId="holamundo"
 version="1.0.0"
-displayName="Hola Mundo Mod"
-description="Un mod de ejemplo que dice Hola Mundo en Minecraft Forge 1.21.8"
+displayName="Hola Mundo"
+description='Un mod de prueba'
+
+[[dependencies.holamundo]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.8,)"
+ordering="NONE"
+side="BOTH"
