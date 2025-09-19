@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.21.8-58.1.0'
+    minecraft 'net.minecraftforge:forge:1.21.8'
     // fg.deobf no es necesario, ForgeGradle ya lo maneja
 }
 
