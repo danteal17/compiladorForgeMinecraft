@@ -11,8 +11,8 @@ public class HolaMundoMod {
 
     public static final String MODID = "holamundo";
 
-    public HolaMundoMod() {
-        return
+    public void HolaMundoMod() {
+        return ;
     }
 
     @SubscribeEvent
