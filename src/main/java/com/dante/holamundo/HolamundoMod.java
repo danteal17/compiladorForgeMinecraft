@@ -11,8 +11,8 @@ public class HolaMundoMod {
 
     public static final String MODID = "holamundo";
 
-    public HolamundoMod() {
-        // No need to register manually
+    public HolaMundoMod() {
+        return
     }
 
     @SubscribeEvent
