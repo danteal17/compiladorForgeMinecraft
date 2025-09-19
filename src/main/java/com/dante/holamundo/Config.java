@@ -40,15 +40,14 @@ public class Config {
     public static Set<Item> items;
 
     private static boolean validateItemName(final Object obj) {
-        if (obj instanceof String) {
-            String itemName = (String) obj;
+        if (obj instanceof String itemName) {
             return ForgeRegistries.ITEMS.containsKey(ResourceLocation.tryParse(itemName));
         }
         return false;
     }
 
     @SubscribeEvent
-    public static void onLoad(final ModConfigEvent event) {
+    public static void onLoad(final ModConfigEvent.Loading event) {
         logDirtBlock = LOG_DIRT_BLOCK.get();
         magicNumber = MAGIC_NUMBER.get();
         magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
@@ -56,5 +55,11 @@ public class Config {
         items = ITEM_STRINGS.get().stream()
                 .map(itemName -> ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(itemName)))
                 .collect(Collectors.toSet());
+    }
+
+    @SubscribeEvent
+    public static void onReload(final ModConfigEvent.Reloading event) {
+        // Optional: re-apply values when configs are reloaded
+        onLoad(event);
     }
 }
