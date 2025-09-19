@@ -17,10 +17,8 @@ repositories {
     maven { url = 'https://repo.spongepowered.org/maven' }
     maven { url = 'https://maven.terraformersmc.com/releases/' }
 }
-
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.21.8'
-    // fg.deobf no es necesario, ForgeGradle ya lo maneja
+    minecraft "net.minecraftforge:forge:1.21.1-51.0.33"
 }
 
 java {
