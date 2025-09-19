@@ -6,23 +6,22 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @Mod(HolamundoMod.MODID)
+@Mod.EventBusSubscriber(modid = HolamundoMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class HolaMundoMod {
 
     public static final String MODID = "holamundo";
 
     public HolamundoMod() {
-        // Register the setup method for modloading
-        Mod.EventBusSubscriber.Bus.MOD.bus().register(this);
+        // No need to register manually
     }
 
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
-        // Common setup code here
         System.out.println("Hola Mundo mod is loading!");
     }
 
     @SubscribeEvent
     public static void doClientStuff(FMLClientSetupEvent event) {
-        // Client setup code here
+        System.out.println("Client setup");
     }
 }
