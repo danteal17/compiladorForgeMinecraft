@@ -6,7 +6,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @Mod(HolamundoMod.MODID)
-public class HolamundoMod {
+public class HolaMundoMod {
 
     public static final String MODID = "holamundo";
 
