@@ -23,7 +23,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21) // Forge 1.21.8 requiere Java 21
+        languageVersion = JavaLanguageVersion.of(17) // Forge 1.21.8 requiere Java 21
     }
 }
 
