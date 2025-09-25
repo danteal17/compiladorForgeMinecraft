@@ -12,40 +12,46 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
+// Este ID debe coincidir con el de mods.toml
 @Mod(HolaMundoMod.MODID)
 public class HolaMundoMod {
     public static final String MODID = "holamundo";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public HolaMundoMod() {
-        // Get mod event bus
+        // Obtenemos el EventBus del mod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // Registramos el setup común
         modEventBus.addListener(this::commonSetup);
 
-        // Register this class for server/game events
+        // Registramos eventos generales del juego
         MinecraftForge.EVENT_BUS.register(this);
 
-        // Client setup via static subscriber
-        modEventBus.addListener(this::dummyClientSetup);
+        // Registramos eventos del cliente
+        modEventBus.addListener(this::clientSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("¡Hola mundo desde Forge 1.21.8!");
+        LOGGER.info("¡Hola mundo desde commonSetup!");
     }
 
-    // Dummy client listener to satisfy Forge
-    private void dummyClientSetup(FMLClientSetupEvent event) {}
+    private void clientSetup(final FMLClientSetupEvent event) {
+        LOGGER.info("¡Hola mundo desde clientSetup!");
+    }
 
+    // Ejemplo de uso de @SubscribeEvent para eventos generales
     @SubscribeEvent
-    public void onServerStarting(net.minecraftforge.event.server.ServerStartingEvent event) {
-        LOGGER.info("Servidor iniciando...");
+    public void exampleEvent(net.minecraftforge.event.server.ServerStartingEvent event) {
+        LOGGER.info("Servidor iniciando, Hola Mundo!");
     }
 
+    // Registrar eventos estáticos del cliente
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("Cliente listo!");
+            LOGGER.info("¡Hola mundo desde ClientModEvents!");
         }
     }
 }
