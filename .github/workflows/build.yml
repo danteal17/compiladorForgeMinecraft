@@ -1,5 +1,4 @@
 name: Build Forge Mod
-
 on:
   push:
     branches: [ main ]
@@ -8,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -29,6 +27,9 @@ jobs:
 
       - name: Make Gradle wrapper executable
         run: chmod +x gradlew
+
+      - name: Setup Forge workspace
+        run: ./gradlew --refresh-dependencies setupDecompWorkspace genSources
 
       - name: Build with Gradle
         run: ./gradlew build
