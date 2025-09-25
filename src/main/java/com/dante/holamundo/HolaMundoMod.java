@@ -1,27 +1,21 @@
 package com.dante.holamundo;
 
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod(HolamundoMod.MODID)
-@Mod.EventBusSubscriber(modid = HolamundoMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod(HolaMundoMod.MODID)
+@EventBusSubscriber(modid = HolaMundoMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class HolaMundoMod {
-
     public static final String MODID = "holamundo";
 
-    public void HolaMundoMod() {
-        return ;
+    public HolaMundoMod() {
+        // Constructor del mod
     }
 
     @SubscribeEvent
-    public static void setup(FMLCommonSetupEvent event) {
-        System.out.println("Hola Mundo mod is loading!");
-    }
-
-    @SubscribeEvent
-    public static void doClientStuff(FMLClientSetupEvent event) {
-        System.out.println("Client setup");
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        System.out.println("¡Hola mundo desde Forge!");
     }
 }
