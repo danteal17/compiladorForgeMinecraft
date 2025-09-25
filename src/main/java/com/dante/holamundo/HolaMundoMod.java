@@ -5,6 +5,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.slf4j.Logger;
 
 @Mod(HolaMundoMod.MODID)
@@ -13,16 +15,20 @@ public class HolaMundoMod {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public HolaMundoMod() {
-        // Registramos los setups
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+        // No uses getModEventBus() aquí
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("¡Hola mundo desde commonSetup!");
-    }
+    // Usa un EventBusSubscriber estático para registrar listeners
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+    public static class ModEventBusSubscriber {
+        @SubscribeEvent
+        public static void commonSetup(FMLCommonSetupEvent event) {
+            LOGGER.info("¡Hola mundo desde commonSetup!");
+        }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("¡Hola mundo desde clientSetup!");
+        @SubscribeEvent
+        public static void clientSetup(FMLClientSetupEvent event) {
+            LOGGER.info("¡Hola mundo desde clientSetup!");
+        }
     }
 }
